@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Login from "./screens/Login"
@@ -49,11 +49,14 @@ export default function App() {
             fontWeight: 'bold',
             fontSize:20,
           },
-          headerRight: () => (
-            <Pressable onPress={() => navigation.navigate('Novo Contato')}>
-              <Icon style={styles.icone} name="plus" size={30} color="#fff" />
-            </Pressable>
-          ),
+          headerRight: () => {
+            const navigation = useNavigation();
+            return (
+              <Pressable onPress={() => navigation.navigate('Novo Contato')}>
+                <Icon style={styles.icone} name="plus" size={30} color="#fff" />
+              </Pressable>
+            );
+          },
            }}
         />
 

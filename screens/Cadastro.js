@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const Cadastro = () => {
+    const [nome, setNome] = useState('');
+    const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,7 +23,7 @@ const Cadastro = () => {
                     <View style={styles.input}>
                         <TextInput
                             style={styles.textInput}
-                            onChangeText={setEmail}
+                            onChangeText={setNome}
                         />
                     </View>
                 </View>
@@ -30,7 +32,7 @@ const Cadastro = () => {
                     <View style={styles.input}>
                         <TextInput
                             style={styles.textInput}
-                            onChangeText={setEmail}
+                            onChangeText={setCpf}
                         />
                     </View>
                 </View>
