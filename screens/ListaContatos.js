@@ -5,21 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 
 const ListaContatos = (props) => {
-    const [contatos, setContatos] = useState([]);
-
-    useEffect(() => {
-        const fetchContatos = async () => {
-          try {
-            const response = await axios.get('http://professornilson.com/testeservico/clientes');
-            const fetchedContatos = response.data;
-            setContatos(fetchedContatos);
-          } catch (error) {
-            console.error('Error fetching contacts:', error);
-          }
-        };
-    
-        fetchContatos();
-      }, []);   
+    const [contatos, setContatos] = useState([]); 
 
       return (
         <View style={styles.container}>

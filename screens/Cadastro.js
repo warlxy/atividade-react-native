@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import * as auth from '@react-native-firebase/auth';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const Cadastro = () => {
@@ -7,13 +9,23 @@ const Cadastro = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigation = useNavigation();
+
     const handleBack = () => {
        console.log("voltando")
     };
 
-    const handleCadastrar = () => {
-
-    };
+    const handleCadastrar = async () => {
+        try {
+          const { email, password } = { email, password };
+          await auth().createUserWithEmailAndPassword(email, password);
+          console.log('Usuário criado com sucesso');
+          navigation.navigate('Sucesso');
+        } catch (error) {
+          console.error('Erro ao registrar:', error);
+          // implementar a mensagem de erro
+        }
+      };
 
     return (
         <View style={styles.container}>

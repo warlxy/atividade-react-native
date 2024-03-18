@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Pressable } from 'react-native';
+import * as auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
@@ -10,13 +11,22 @@ const Login = () => {
 
     const navigation = useNavigation();
 
-    const handleLogin = () => {
-        navigation.navigate('Lista de Contatos')
-    };
+    const handleLogin = async () => {
+        try {
+          const { email, password } = { email, password };
+          await auth().signInWithEmailAndPassword(email, password);
+          console.log('Efetuado com sucesso');
+          navigation.navigate('Lista de Contatos')
+        } catch (error) {
+          console.error('Login error:', error);
+          // implementar a mensagem de erro
+        }
+      };
 
     const handleCadastro = () => {
         navigation.navigate('Usuário');
     };
+    
 
     return (
         <View style={styles.container}>
